@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bionix-rl-data-pipeline"
+version = "1.0.0"
+requires-python = ">=3.10"
+dependencies = ["numpy", "pandas>=2.0", "scipy"]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+# Downloading recordings from the Shared Drive (python -m bionix_pipeline.cli --from-drive)
+drive = ["bionixdb @ git+https://github.com/albertabionix/bionix-db.git@v0.2.0"]
+
+[project.scripts]
+bionix-clean = "bionix_pipeline.cli:main"
+bionix-compress = "bionix_pipeline.compress:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
